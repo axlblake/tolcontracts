@@ -12,20 +12,12 @@ contract TOLCard is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     string private _baseTokenURI;
 
-    // bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    // bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-
     constructor(
         string memory name,
         string memory symbol,
         string memory baseTokenURI
     ) ERC721(name, symbol) {
         _baseTokenURI = baseTokenURI;
-
-        // _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-
-        // _setupRole(MINTER_ROLE, _msgSender());
-        // _setupRole(PAUSER_ROLE, _msgSender());
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
@@ -66,8 +58,6 @@ contract TOLCard is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     function mint(address to) public virtual {
-        // require(hasRole(MINTER_ROLE, _msgSender()), "TOLCard: must have minter role to mint");
-
         _mint(to, _tokenIdTracker.current());
         _tokenIdTracker.increment();
     }
